@@ -3,14 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def FuncDeriv(fx, x):
-    h = 0.00001
-    return (FuncX(fx, x + h) - FuncX(fx, x)) / h
-
-
 def FuncX(fx, x):
     resultado = fx.replace('x', str(x))
     return float(eval(resultado))
+
+
+def FuncDeriv(fx, x):
+    h = 0.00001
+    return (FuncX(fx, x + h) - FuncX(fx, x)) / h
 
 
 def TxVar(fxA, fxB, a, b):
@@ -41,7 +41,7 @@ def Main(fx, a, b):
     plt.plot(listaIntervalo, [round(FuncDeriv(fx, i), 2)
              for i in listaIntervalo], color='blue', label='Derivada')
     # Ponto da Media da variação
-    if len(listaAprox) > 1:
+    if len(listaAprox) >= 1:
         plt.plot(listaAprox, [FuncDeriv(fx, i)
                               for i in listaAprox], 'ro', label='Variacao Media')
     else:
@@ -52,6 +52,8 @@ def Main(fx, a, b):
     plt.grid(True)
     plt.legend(loc='upper left')
     plt.show()
+
+# Entradas
 
 
 f = input('Digite a função:\t')
